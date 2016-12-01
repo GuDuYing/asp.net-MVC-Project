@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3D86819B-29D7-4DDA-8C1A-E863754FA89F}</ProjectGuid>
+    <ProjectGuid>{AA781F10-FA6A-4A7B-AF56-EB64712B7D34}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Model</RootNamespace>
@@ -30,8 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,7 +52,82 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HighSchoolVideoDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HighSchoolVideoDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HighSchoolVideoDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HighSchoolVideoDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HighSchoolVideoDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MyConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="T_Course.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Discuss.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Exercises.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Manage.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Option.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_SchoolInfo.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_SelectCourse.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Student.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Teacher.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_User.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T_Video.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="HighSchoolVideoDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HighSchoolVideoDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="HighSchoolVideoDB.edmx.diagram">
+      <DependentUpon>HighSchoolVideoDB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HighSchoolVideoDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HighSchoolVideoDB.edmx</DependentUpon>
+      <LastGenOutput>HighSchoolVideoDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="HighSchoolVideoDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HighSchoolVideoDB.edmx</DependentUpon>
+      <LastGenOutput>HighSchoolVideoDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
