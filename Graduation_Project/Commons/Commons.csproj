@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -48,12 +52,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CryptHelper\AESCrypt.cs" />
     <Compile Include="CryptHelper\DESCrypt.cs" />
     <Compile Include="Enums\EnumsClass.cs" />
     <Compile Include="JsonHelper\AjaxResult.cs" />
     <Compile Include="JsonHelper\JsonConverter.cs" />
     <Compile Include="JsonHelper\JsonHelper.cs" />
     <Compile Include="JsonHelper\JsonSplit.cs" />
+    <Compile Include="Log\ExtLogImpl.cs" />
+    <Compile Include="Log\ExtLogManager.cs" />
+    <Compile Include="Log\IExtLog.cs" />
     <Compile Include="PageCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolsHelper\RegexHelper.cs" />

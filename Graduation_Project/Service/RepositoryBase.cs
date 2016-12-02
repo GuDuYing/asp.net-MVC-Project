@@ -10,12 +10,12 @@ using System.Linq.Expressions;
 using System.Collections;
 using IService;
 using Model;
+using Commons;
 
 namespace Service
 {
     /// <summary>
     /// 数据操作基本实现类，公用实现方法
-    /// add yuangang by 2016-05-10
     /// </summary>
     /// <typeparam name="T">具体操作的实体模型</typeparam>
     public abstract class RepositoryBase<T> : IRepository<T> where T : class
@@ -586,7 +586,7 @@ namespace Service
         {
             List<object> list = QueryObject<TEntity, TOrderBy>
                  (where, orderby, selector, IsAsc);
-            return Commons.JsonConverter.JsonClass(list);
+            return Commons.JsonHelper.JsonConverter.JsonClass(list);
         }
         #endregion
 

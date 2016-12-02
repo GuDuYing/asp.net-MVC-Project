@@ -6,6 +6,7 @@ using System.Text;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using System.Linq.Expressions;
+using Commons;
 
 namespace IService
 {

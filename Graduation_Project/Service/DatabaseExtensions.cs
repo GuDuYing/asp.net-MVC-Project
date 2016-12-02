@@ -249,14 +249,14 @@ namespace Service
                     return null;
                 }
                 //2、DataReader转换Json
-                string jsonstr = Commons.JsonConverter.ToJson(dataReader);
+                string jsonstr = Commons.JsonHelper.JsonConverter.ToJson(dataReader);
                 dataReader.Close();
                 dataReader.Dispose();
                 cmd.Dispose();
                 conn.Close();
                 conn.Dispose();
                 //3、Json转换动态类
-                dynamic dyna = Commons.JsonConverter.ConvertJson(jsonstr);
+                dynamic dyna = Commons.JsonHelper.JsonConverter.ConvertJson(jsonstr);
                 return dyna;
             }
         }
