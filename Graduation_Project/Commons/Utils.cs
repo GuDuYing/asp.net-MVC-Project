@@ -14,7 +14,7 @@ using System.Runtime.Serialization.Json;
 using System.Configuration;
 using System.Reflection;
 
-namespace Common
+namespace Commons
 {
     /// <summary>
     /// 系统帮助类
@@ -1608,7 +1608,7 @@ namespace Common
             strTxt.Append("E6070A99BE42E445E552F9F66FAA5");
             strTxt.Append("5F9FB376357C467EBF7F7E3B3FC77");
             strTxt.Append("F37866FEFB0237D95CCCE157A");
-            return new Common.CryptHelper.DESCrypt().Decrypt(strTxt.ToString(), key);
+            return new Commons.CryptHelper.DESCrypt().Decrypt(strTxt.ToString(), key);
         }
         /// <summary>
         /// 返回指定的服务器变量信息

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Common.CryptHelper
+namespace Commons.CryptHelper
 {
     public class DESCrypt
     {

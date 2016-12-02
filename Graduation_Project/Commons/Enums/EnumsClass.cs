@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace Common.Enums
+namespace Commons.Enums
 {
     /// <summary>
     /// 枚举独特类

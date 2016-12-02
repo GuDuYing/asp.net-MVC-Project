@@ -586,7 +586,7 @@ namespace Service
         {
             List<object> list = QueryObject<TEntity, TOrderBy>
                  (where, orderby, selector, IsAsc);
-            return Common.JsonConverter.JsonClass(list);
+            return Commons.JsonConverter.JsonClass(list);
         }
         #endregion
 
@@ -594,14 +594,14 @@ namespace Service
         /// <summary>
         /// 待自定义分页函数，使用必须重写，指定数据模型
         /// </summary>
-        public virtual IList<T1> PageByListSql<T1>(string sql, IList<DbParameter> parameters, Common.PageCollection page)
+        public virtual IList<T1> PageByListSql<T1>(string sql, IList<DbParameter> parameters, Commons.PageCollection page)
         {
             return null;
         }
         /// <summary>
         /// 待自定义分页函数，使用必须重写，
         /// </summary>
-        public virtual IList<T> PageByListSql(string sql, IList<DbParameter> parameters, Common.PageCollection page)
+        public virtual IList<T> PageByListSql(string sql, IList<DbParameter> parameters, Commons.PageCollection page)
         {
             return null;
         }
@@ -613,7 +613,7 @@ namespace Service
         /// <param name="index">当前页</param>
         /// <param name="PageSize">每页显示多少条</param>
         /// <returns>当前IQueryable to List的对象</returns>
-        public virtual Common.PageInfo<T> Query(IQueryable<T> query, int index, int PageSize)
+        public virtual Commons.PageInfo<T> Query(IQueryable<T> query, int index, int PageSize)
         {
             if (index < 1)
             {
@@ -637,7 +637,7 @@ namespace Service
             }
             if (count > 0)
                 query = query.Skip((index - 1) * PageSize).Take(PageSize);
-            return new Common.PageInfo<T>(index, PageSize, count, query.ToList());
+            return new Commons.PageInfo<T>(index, PageSize, count, query.ToList());
         }
         /// <summary>
         /// 通用EF分页，默认显示20条记录
@@ -651,7 +651,7 @@ namespace Service
         /// <param name="selector">结果集合</param>
         /// <param name="isAsc">排序方向true正序 false倒序</param>
         /// <returns>自定义实体集合</returns>
-        public virtual Common.PageInfo<object> Query<TEntity, TOrderBy>
+        public virtual Commons.PageInfo<object> Query<TEntity, TOrderBy>
             (int index, int pageSize,
             Expression<Func<TEntity, bool>> where,
             Expression<Func<TEntity, TOrderBy>> orderby,
@@ -696,8 +696,8 @@ namespace Service
                 query = query.Skip((index - 1) * pageSize).Take(pageSize);
             //返回结果为null，返回所有字段
             if (selector == null)
-                return new Common.PageInfo<object>(index, pageSize, count, query.ToList<object>());
-            return new Common.PageInfo<object>(index, pageSize, count, selector(query).ToList());
+                return new Commons.PageInfo<object>(index, pageSize, count, query.ToList<object>());
+            return new Commons.PageInfo<object>(index, pageSize, count, selector(query).ToList());
         }
         /// <summary>
         /// 普通SQL查询分页方法
@@ -710,7 +710,7 @@ namespace Service
         /// <param name="orderby">排序字段+排序方向</param>
         /// <param name="group">分组字段</param>
         /// <returns>结果集</returns>
-        public virtual Common.PageInfo Query(int index, int pageSize, string tableName, string field, string filter, string orderby, string group, params DbParameter[] para)
+        public virtual Commons.PageInfo Query(int index, int pageSize, string tableName, string field, string filter, string orderby, string group, params DbParameter[] para)
         {
             //执行分页算法
             if (index <= 0)
@@ -763,8 +763,8 @@ namespace Service
             }
             var list = ExecuteSqlQuery(sql, para) as IEnumerable;
             if (list != null)
-                return new Common.PageInfo(index, pageSize, count, list.Cast<object>().ToList());
-            return new Common.PageInfo(index, pageSize, count, new { });
+                return new Commons.PageInfo(index, pageSize, count, list.Cast<object>().ToList());
+            return new Commons.PageInfo(index, pageSize, count, new { });
         }
 
         /// <summary>
@@ -775,14 +775,14 @@ namespace Service
         /// <param name="sql">纯SQL语句</param>
         /// <param name="orderby">排序字段与方向</param>
         /// <returns></returns>
-        public virtual Common.PageInfo Query(int index, int pageSize, string sql, string orderby, params DbParameter[] para)
+        public virtual Commons.PageInfo Query(int index, int pageSize, string sql, string orderby, params DbParameter[] para)
         {
             return this.Query(index, pageSize, sql, null, null, orderby, null, para);
         }
         /// <summary>
         /// 多表联合分页算法
         /// </summary>
-        public virtual Common.PageInfo Query(IQueryable query, int index, int PageSize)
+        public virtual Commons.PageInfo Query(IQueryable query, int index, int PageSize)
         {
             var enumerable = (query as System.Collections.IEnumerable).Cast<object>();
             if (index < 1)
@@ -808,7 +808,7 @@ namespace Service
             }
             if (count > 0)
                 enumerable = enumerable.Skip((index - 1) * PageSize).Take(PageSize);
-            return new Common.PageInfo(index, PageSize, count, enumerable.ToList());
+            return new Commons.PageInfo(index, PageSize, count, enumerable.ToList());
         }
         #endregion
 

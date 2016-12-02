@@ -233,7 +233,7 @@ namespace IService
         /// <param name="index">当前页</param>
         /// <param name="PageSize">每页显示多少条</param>
         /// <returns>当前IQueryable to List的对象</returns>
-        Common.PageInfo<T> Query(IQueryable<T> query, int index, int PageSize);
+        Commons.PageInfo<T> Query(IQueryable<T> query, int index, int PageSize);
         /// <summary>
         /// 普通SQL查询分页方法
         /// </summary>
@@ -245,7 +245,7 @@ namespace IService
         /// <param name="orderby">排序字段+排序方向</param>
         /// <param name="group">分组字段</param>
         /// <returns>结果集</returns>
-        Common.PageInfo Query(int index, int pageSize, string tableName, string field, string filter, string orderby, string group, params DbParameter[] para);
+        Commons.PageInfo Query(int index, int pageSize, string tableName, string field, string filter, string orderby, string group, params DbParameter[] para);
         /// <summary>
         /// 简单的Sql查询分页
         /// </summary>
@@ -253,7 +253,7 @@ namespace IService
         /// <param name="pageSize"></param>
         /// <param name="sql"></param>
         /// <returns></returns>
-        Common.PageInfo Query(int index, int pageSize, string sql, string orderby, params DbParameter[] para);
+        Commons.PageInfo Query(int index, int pageSize, string sql, string orderby, params DbParameter[] para);
         /// <summary>
         /// 多表联合分页算法
         /// </summary>
