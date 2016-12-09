@@ -11,24 +11,65 @@ using System.Web.Script.Serialization;
 
 namespace Service.VideoManage
 {
+    public struct JsonOut
+    {
+        public string code { get; set; }
+        public string message { get; set; }
+        public string total { get; set; }
+        public JsonIn data;
+    }
+
+    public struct JsonIn
+    {
+        public string video_id { get; set; }
+        public string video_unique { get; set; }
+        public string upload_url { get; set; }
+        public string progress_url { get; set; }
+        public string token { get; set; }
+        public string uploadtype { get; set; }
+        public string isdrm { get; set; }
+    }
+
     public class VideoHelper
     {
         //用户唯一标识码
-        private string user_unique = "";   
+        private static string user_unique = "";   
         //用户密钥 
-        private string secretKey = "";
+        private static string secretKey = "";
         //接口地址
-        private string URL = "http://api.letvcloud.com/open.php";
+        private static string URL = "http://api.letvcloud.com/open.php";
         //返回参数的格式
-        private string format = "JSON";
+        private static string format = "JSON";
         //协议版本号
-        private string ver = "2.0";
+        private static string ver = "2.0";
         //视频上传标识，用于断点续传和上传进度查询
-        private string token;  
-        
-        
-        
-        public string MakeRequestURL(string api,Dictionary<string,string> args)
+        private static string token;
+
+        /// <summary>
+        /// 上传视频初始化操作
+        /// </summary>
+        /// <param name="video_name">视频名称</param>
+        /// <param name="client_ip">客户端ip</param>
+        /// <param name="file_size">文件大小</param>
+        /// <returns></returns>
+        public static string videoUploadInit(String video_name, String client_ip, int file_size)
+        {
+            string api = "video.upload.init";
+            Dictionary<string, string> args = new Dictionary<string, string>();
+            args.Add("video_name", video_name);
+            if (client_ip.Length > 0)
+            {
+                args.Add("client_ip", client_ip);
+            }
+            if (file_size > 0)
+            {
+                args.Add("file_size", file_size + "");
+            }
+            return MakeRequestURL(api, args);
+        }
+
+
+        public static string MakeRequestURL(string api,Dictionary<string,string> args)
         {
             args.Add("user_unique", user_unique);
             TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0);
@@ -51,7 +92,7 @@ namespace Service.VideoManage
         /// </summary>
         /// <param name="args">参数信息字典</param>
         /// <returns>sign值</returns>
-        public string GenerateSign(Dictionary<string,string> args)
+        private static string GenerateSign(Dictionary<string,string> args)
         {
             Dictionary<string, string> argsAsc = args.OrderBy(o => o.Key).ToDictionary(o => o.Key, p => p.Value);
             String keyStr = "";
@@ -115,7 +156,7 @@ namespace Service.VideoManage
         /// </summary>
         /// <param name="url">访问的URL地址</param>
         /// <returns></returns>
-        private string DoGet(String url)
+        public static string DoGet(String url)
         {
             try
             {
@@ -142,7 +183,7 @@ namespace Service.VideoManage
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        private JsonOut jsonGet(string str)
+        public static JsonOut jsonGet(string str)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             JsonOut json = serializer.Deserialize<JsonOut>(str);
@@ -155,7 +196,7 @@ namespace Service.VideoManage
         /// <param name="uri">请求URL</param>
         /// <param name="file">上传视频的文件流</param>
         /// <returns></returns>
-        public byte[] uploadPost(Uri uri, FileStream file)
+        public static byte[] uploadPost(Uri uri, FileStream file)
         {
             string boundary = "----------------------------" + DateTime.Now.Ticks.ToString("x");
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
