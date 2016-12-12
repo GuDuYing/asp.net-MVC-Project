@@ -28,6 +28,7 @@ namespace Model
         public virtual DbSet<T_Course> T_Course { get; set; }
         public virtual DbSet<T_Discuss> T_Discuss { get; set; }
         public virtual DbSet<T_Exercises> T_Exercises { get; set; }
+        public virtual DbSet<T_LOG> T_LOG { get; set; }
         public virtual DbSet<T_Manage> T_Manage { get; set; }
         public virtual DbSet<T_Option> T_Option { get; set; }
         public virtual DbSet<T_SchoolInfo> T_SchoolInfo { get; set; }

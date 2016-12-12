@@ -78,6 +78,9 @@
     <Compile Include="T_Exercises.cs">
       <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="T_LOG.cs">
+      <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="T_Manage.cs">
       <DependentUpon>HighSchoolVideoDB.tt</DependentUpon>
     </Compile>

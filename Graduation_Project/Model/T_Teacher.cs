@@ -14,12 +14,6 @@ namespace Model
     
     public partial class T_Teacher
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public T_Teacher()
-        {
-            this.T_Course = new HashSet<T_Course>();
-        }
-    
         public int TID { get; set; }
         public Nullable<int> TeacherNum { get; set; }
         public string TeacherName { get; set; }
@@ -28,8 +22,5 @@ namespace Model
         public string TeacherAbout { get; set; }
         public Nullable<int> SchoolID { get; set; }
         public Nullable<int> UserID { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_Course> T_Course { get; set; }
     }
 }

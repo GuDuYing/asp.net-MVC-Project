@@ -14,13 +14,6 @@ namespace Model
     
     public partial class T_Video
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public T_Video()
-        {
-            this.T_Discuss = new HashSet<T_Discuss>();
-            this.T_Exercises = new HashSet<T_Exercises>();
-        }
-    
         public int VID { get; set; }
         public string VideoName { get; set; }
         public string VideoAbout { get; set; }
@@ -28,11 +21,5 @@ namespace Model
         public string VideoID { get; set; }
         public Nullable<short> IsHaveExerc { get; set; }
         public Nullable<int> CourseID { get; set; }
-    
-        public virtual T_Course T_Course { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_Discuss> T_Discuss { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_Exercises> T_Exercises { get; set; }
     }
 }

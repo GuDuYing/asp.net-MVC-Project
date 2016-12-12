@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HighSchoolVideoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="T_Course">
           <Key>
             <PropertyRef Name="courseID" />
@@ -36,6 +36,21 @@
           <Property Name="Answer" Type="varchar" MaxLength="50" />
           <Property Name="Type" Type="varchar" MaxLength="20" />
           <Property Name="VID" Type="int" />
+        </EntityType>
+        <EntityType Name="T_LOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATES" Type="datetime" />
+          <Property Name="LEVELS" Type="nvarchar" MaxLength="20" />
+          <Property Name="LOGGER" Type="nvarchar" MaxLength="200" />
+          <Property Name="CLIENTUSER" Type="nvarchar" MaxLength="100" />
+          <Property Name="CLIENTIP" Type="nvarchar" MaxLength="20" />
+          <Property Name="REQUESTURL" Type="nvarchar" MaxLength="500" />
+          <Property Name="ACTION" Type="nvarchar" MaxLength="20" />
+          <Property Name="MESSAGE" Type="nvarchar" MaxLength="4000" />
+          <Property Name="EXCEPTION" Type="nvarchar" MaxLength="4000" />
         </EntityType>
         <EntityType Name="T_Manage">
           <Key>
@@ -102,12 +117,12 @@
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="varchar" MaxLength="20" />
-          <Property Name="UserEmail" Type="varchar" MaxLength="20" />
-          <Property Name="UserPwd" Type="varchar" MaxLength="10" />
-          <Property Name="UsrPhone" Type="varchar" MaxLength="11" />
-          <Property Name="UserStatu" Type="varchar" MaxLength="4" />
-          <Property Name="UserType" Type="varchar" MaxLength="8" />
+          <Property Name="UserName" Type="varchar" MaxLength="30" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="30" />
+          <Property Name="UserPwd" Type="varchar" MaxLength="20" />
+          <Property Name="UsrPhone" Type="varchar" MaxLength="24" />
+          <Property Name="UserStatu" Type="varchar" MaxLength="8" />
+          <Property Name="UserType" Type="varchar" MaxLength="16" />
         </EntityType>
         <EntityType Name="T_Video">
           <Key>
@@ -121,136 +136,11 @@
           <Property Name="IsHaveExerc" Type="smallint" />
           <Property Name="CourseID" Type="int" />
         </EntityType>
-        <Association Name="FK_T_Course_T_Teacher">
-          <End Role="T_Teacher" Type="Self.T_Teacher" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Course" Type="Self.T_Course" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Teacher">
-              <PropertyRef Name="TID" />
-            </Principal>
-            <Dependent Role="T_Course">
-              <PropertyRef Name="TID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Discuss_T_Video">
-          <End Role="T_Video" Type="Self.T_Video" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Discuss" Type="Self.T_Discuss" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Video">
-              <PropertyRef Name="VID" />
-            </Principal>
-            <Dependent Role="T_Discuss">
-              <PropertyRef Name="VID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Exercises_T_Video">
-          <End Role="T_Video" Type="Self.T_Video" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Exercises" Type="Self.T_Exercises" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Video">
-              <PropertyRef Name="VID" />
-            </Principal>
-            <Dependent Role="T_Exercises">
-              <PropertyRef Name="VID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Option_T_Exercises">
-          <End Role="T_Exercises" Type="Self.T_Exercises" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Option" Type="Self.T_Option" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Exercises">
-              <PropertyRef Name="EID" />
-            </Principal>
-            <Dependent Role="T_Option">
-              <PropertyRef Name="EID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_SelectCourse_T_Course">
-          <End Role="T_Course" Type="Self.T_Course" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_SelectCourse" Type="Self.T_SelectCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Course">
-              <PropertyRef Name="courseID" />
-            </Principal>
-            <Dependent Role="T_SelectCourse">
-              <PropertyRef Name="CourseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_SelectCourse_T_Student">
-          <End Role="T_Student" Type="Self.T_Student" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_SelectCourse" Type="Self.T_SelectCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Student">
-              <PropertyRef Name="SID" />
-            </Principal>
-            <Dependent Role="T_SelectCourse">
-              <PropertyRef Name="SID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Student_T_SchoolInfo">
-          <End Role="T_SchoolInfo" Type="Self.T_SchoolInfo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Student" Type="Self.T_Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_SchoolInfo">
-              <PropertyRef Name="SchoolID" />
-            </Principal>
-            <Dependent Role="T_Student">
-              <PropertyRef Name="SchoolID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Student_T_User">
-          <End Role="T_User" Type="Self.T_User" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Student" Type="Self.T_Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_User">
-              <PropertyRef Name="UID" />
-            </Principal>
-            <Dependent Role="T_Student">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Video_T_Course">
-          <End Role="T_Course" Type="Self.T_Course" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Video" Type="Self.T_Video" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Course">
-              <PropertyRef Name="courseID" />
-            </Principal>
-            <Dependent Role="T_Video">
-              <PropertyRef Name="CourseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="HighSchoolVideoDBModelStoreContainer">
+        <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="T_Course" EntityType="Self.T_Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_Discuss" EntityType="Self.T_Discuss" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_Exercises" EntityType="Self.T_Exercises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_LOG" EntityType="Self.T_LOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_Manage" EntityType="Self.T_Manage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_Option" EntityType="Self.T_Option" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_SchoolInfo" EntityType="Self.T_SchoolInfo" Schema="dbo" store:Type="Tables" />
@@ -259,48 +149,12 @@
           <EntitySet Name="T_Teacher" EntityType="Self.T_Teacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_User" EntityType="Self.T_User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_Video" EntityType="Self.T_Video" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_T_Course_T_Teacher" Association="Self.FK_T_Course_T_Teacher">
-            <End Role="T_Teacher" EntitySet="T_Teacher" />
-            <End Role="T_Course" EntitySet="T_Course" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Discuss_T_Video" Association="Self.FK_T_Discuss_T_Video">
-            <End Role="T_Video" EntitySet="T_Video" />
-            <End Role="T_Discuss" EntitySet="T_Discuss" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Exercises_T_Video" Association="Self.FK_T_Exercises_T_Video">
-            <End Role="T_Video" EntitySet="T_Video" />
-            <End Role="T_Exercises" EntitySet="T_Exercises" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Option_T_Exercises" Association="Self.FK_T_Option_T_Exercises">
-            <End Role="T_Exercises" EntitySet="T_Exercises" />
-            <End Role="T_Option" EntitySet="T_Option" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_SelectCourse_T_Course" Association="Self.FK_T_SelectCourse_T_Course">
-            <End Role="T_Course" EntitySet="T_Course" />
-            <End Role="T_SelectCourse" EntitySet="T_SelectCourse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_SelectCourse_T_Student" Association="Self.FK_T_SelectCourse_T_Student">
-            <End Role="T_Student" EntitySet="T_Student" />
-            <End Role="T_SelectCourse" EntitySet="T_SelectCourse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Student_T_SchoolInfo" Association="Self.FK_T_Student_T_SchoolInfo">
-            <End Role="T_SchoolInfo" EntitySet="T_SchoolInfo" />
-            <End Role="T_Student" EntitySet="T_Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Student_T_User" Association="Self.FK_T_Student_T_User">
-            <End Role="T_User" EntitySet="T_User" />
-            <End Role="T_Student" EntitySet="T_Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Video_T_Course" Association="Self.FK_T_Video_T_Course">
-            <End Role="T_Course" EntitySet="T_Course" />
-            <End Role="T_Video" EntitySet="T_Video" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="HighSchoolVideoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="T_Course">
           <Key>
             <PropertyRef Name="courseID" />
@@ -311,9 +165,6 @@
           <Property Name="startTime" Type="DateTime" Precision="3" />
           <Property Name="endTime" Type="DateTime" Precision="3" />
           <Property Name="courseAbout" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="T_Teacher" Relationship="Self.FK_T_Course_T_Teacher" FromRole="T_Course" ToRole="T_Teacher" />
-          <NavigationProperty Name="T_SelectCourse" Relationship="Self.FK_T_SelectCourse_T_Course" FromRole="T_Course" ToRole="T_SelectCourse" />
-          <NavigationProperty Name="T_Video" Relationship="Self.FK_T_Video_T_Course" FromRole="T_Course" ToRole="T_Video" />
         </EntityType>
         <EntityType Name="T_Discuss">
           <Key>
@@ -325,7 +176,6 @@
           <Property Name="DisTime" Type="DateTime" Precision="3" />
           <Property Name="AnsID" Type="Int32" />
           <Property Name="VID" Type="Int32" />
-          <NavigationProperty Name="T_Video" Relationship="Self.FK_T_Discuss_T_Video" FromRole="T_Discuss" ToRole="T_Video" />
         </EntityType>
         <EntityType Name="T_Exercises">
           <Key>
@@ -336,8 +186,21 @@
           <Property Name="Answer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="VID" Type="Int32" />
-          <NavigationProperty Name="T_Video" Relationship="Self.FK_T_Exercises_T_Video" FromRole="T_Exercises" ToRole="T_Video" />
-          <NavigationProperty Name="T_Option" Relationship="Self.FK_T_Option_T_Exercises" FromRole="T_Exercises" ToRole="T_Option" />
+        </EntityType>
+        <EntityType Name="T_LOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATES" Type="DateTime" Precision="3" />
+          <Property Name="LEVELS" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LOGGER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CLIENTUSER" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CLIENTIP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="REQUESTURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ACTION" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MESSAGE" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="EXCEPTION" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="T_Manage">
           <Key>
@@ -357,7 +220,6 @@
           <Property Name="OptionNum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="OContent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EID" Type="Int32" />
-          <NavigationProperty Name="T_Exercises" Relationship="Self.FK_T_Option_T_Exercises" FromRole="T_Option" ToRole="T_Exercises" />
         </EntityType>
         <EntityType Name="T_SchoolInfo">
           <Key>
@@ -367,7 +229,6 @@
           <Property Name="SchoolName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="SchoolAbout" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="BuildTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="T_Student" Relationship="Self.FK_T_Student_T_SchoolInfo" FromRole="T_SchoolInfo" ToRole="T_Student" />
         </EntityType>
         <EntityType Name="T_SelectCourse">
           <Key>
@@ -376,8 +237,6 @@
           <Property Name="SCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SID" Type="Int32" Nullable="false" />
           <Property Name="CourseID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="T_Course" Relationship="Self.FK_T_SelectCourse_T_Course" FromRole="T_SelectCourse" ToRole="T_Course" />
-          <NavigationProperty Name="T_Student" Relationship="Self.FK_T_SelectCourse_T_Student" FromRole="T_SelectCourse" ToRole="T_Student" />
         </EntityType>
         <EntityType Name="T_Student">
           <Key>
@@ -389,9 +248,6 @@
           <Property Name="StuSex" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="SchoolID" Type="Int32" />
           <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="T_SchoolInfo" Relationship="Self.FK_T_Student_T_SchoolInfo" FromRole="T_Student" ToRole="T_SchoolInfo" />
-          <NavigationProperty Name="T_SelectCourse" Relationship="Self.FK_T_SelectCourse_T_Student" FromRole="T_Student" ToRole="T_SelectCourse" />
-          <NavigationProperty Name="T_User" Relationship="Self.FK_T_Student_T_User" FromRole="T_Student" ToRole="T_User" />
         </EntityType>
         <EntityType Name="T_Teacher">
           <Key>
@@ -405,20 +261,18 @@
           <Property Name="TeacherAbout" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SchoolID" Type="Int32" />
           <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="T_Course" Relationship="Self.FK_T_Course_T_Teacher" FromRole="T_Teacher" ToRole="T_Course" />
         </EntityType>
         <EntityType Name="T_User">
           <Key>
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="UserEmail" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="UserPwd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="UsrPhone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="UserStatu" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="UserType" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="T_Student" Relationship="Self.FK_T_Student_T_User" FromRole="T_User" ToRole="T_Student" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserPwd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UsrPhone" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+          <Property Name="UserStatu" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="T_Video">
           <Key>
@@ -431,140 +285,12 @@
           <Property Name="VideoID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="IsHaveExerc" Type="Int16" />
           <Property Name="CourseID" Type="Int32" />
-          <NavigationProperty Name="T_Course" Relationship="Self.FK_T_Video_T_Course" FromRole="T_Video" ToRole="T_Course" />
-          <NavigationProperty Name="T_Discuss" Relationship="Self.FK_T_Discuss_T_Video" FromRole="T_Video" ToRole="T_Discuss" />
-          <NavigationProperty Name="T_Exercises" Relationship="Self.FK_T_Exercises_T_Video" FromRole="T_Video" ToRole="T_Exercises" />
         </EntityType>
-        <Association Name="FK_T_Course_T_Teacher">
-          <End Role="T_Teacher" Type="Self.T_Teacher" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Course" Type="Self.T_Course" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Teacher">
-              <PropertyRef Name="TID" />
-            </Principal>
-            <Dependent Role="T_Course">
-              <PropertyRef Name="TID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_SelectCourse_T_Course">
-          <End Role="T_Course" Type="Self.T_Course" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_SelectCourse" Type="Self.T_SelectCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Course">
-              <PropertyRef Name="courseID" />
-            </Principal>
-            <Dependent Role="T_SelectCourse">
-              <PropertyRef Name="CourseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Video_T_Course">
-          <End Role="T_Course" Type="Self.T_Course" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Video" Type="Self.T_Video" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Course">
-              <PropertyRef Name="courseID" />
-            </Principal>
-            <Dependent Role="T_Video">
-              <PropertyRef Name="CourseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Discuss_T_Video">
-          <End Role="T_Video" Type="Self.T_Video" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Discuss" Type="Self.T_Discuss" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Video">
-              <PropertyRef Name="VID" />
-            </Principal>
-            <Dependent Role="T_Discuss">
-              <PropertyRef Name="VID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Exercises_T_Video">
-          <End Role="T_Video" Type="Self.T_Video" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Exercises" Type="Self.T_Exercises" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Video">
-              <PropertyRef Name="VID" />
-            </Principal>
-            <Dependent Role="T_Exercises">
-              <PropertyRef Name="VID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Option_T_Exercises">
-          <End Role="T_Exercises" Type="Self.T_Exercises" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Option" Type="Self.T_Option" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Exercises">
-              <PropertyRef Name="EID" />
-            </Principal>
-            <Dependent Role="T_Option">
-              <PropertyRef Name="EID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Student_T_SchoolInfo">
-          <End Role="T_SchoolInfo" Type="Self.T_SchoolInfo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Student" Type="Self.T_Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_SchoolInfo">
-              <PropertyRef Name="SchoolID" />
-            </Principal>
-            <Dependent Role="T_Student">
-              <PropertyRef Name="SchoolID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_SelectCourse_T_Student">
-          <End Role="T_Student" Type="Self.T_Student" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_SelectCourse" Type="Self.T_SelectCourse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_Student">
-              <PropertyRef Name="SID" />
-            </Principal>
-            <Dependent Role="T_SelectCourse">
-              <PropertyRef Name="SID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_T_Student_T_User">
-          <End Role="T_User" Type="Self.T_User" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="T_Student" Type="Self.T_Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_User">
-              <PropertyRef Name="UID" />
-            </Principal>
-            <Dependent Role="T_Student">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="T_Course" EntityType="Self.T_Course" />
           <EntitySet Name="T_Discuss" EntityType="Self.T_Discuss" />
           <EntitySet Name="T_Exercises" EntityType="Self.T_Exercises" />
+          <EntitySet Name="T_LOG" EntityType="Self.T_LOG" />
           <EntitySet Name="T_Manage" EntityType="Self.T_Manage" />
           <EntitySet Name="T_Option" EntityType="Self.T_Option" />
           <EntitySet Name="T_SchoolInfo" EntityType="Self.T_SchoolInfo" />
@@ -573,51 +299,15 @@
           <EntitySet Name="T_Teacher" EntityType="Self.T_Teacher" />
           <EntitySet Name="T_User" EntityType="Self.T_User" />
           <EntitySet Name="T_Video" EntityType="Self.T_Video" />
-          <AssociationSet Name="FK_T_Course_T_Teacher" Association="Self.FK_T_Course_T_Teacher">
-            <End Role="T_Teacher" EntitySet="T_Teacher" />
-            <End Role="T_Course" EntitySet="T_Course" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_SelectCourse_T_Course" Association="Self.FK_T_SelectCourse_T_Course">
-            <End Role="T_Course" EntitySet="T_Course" />
-            <End Role="T_SelectCourse" EntitySet="T_SelectCourse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Video_T_Course" Association="Self.FK_T_Video_T_Course">
-            <End Role="T_Course" EntitySet="T_Course" />
-            <End Role="T_Video" EntitySet="T_Video" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Discuss_T_Video" Association="Self.FK_T_Discuss_T_Video">
-            <End Role="T_Video" EntitySet="T_Video" />
-            <End Role="T_Discuss" EntitySet="T_Discuss" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Exercises_T_Video" Association="Self.FK_T_Exercises_T_Video">
-            <End Role="T_Video" EntitySet="T_Video" />
-            <End Role="T_Exercises" EntitySet="T_Exercises" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Option_T_Exercises" Association="Self.FK_T_Option_T_Exercises">
-            <End Role="T_Exercises" EntitySet="T_Exercises" />
-            <End Role="T_Option" EntitySet="T_Option" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Student_T_SchoolInfo" Association="Self.FK_T_Student_T_SchoolInfo">
-            <End Role="T_SchoolInfo" EntitySet="T_SchoolInfo" />
-            <End Role="T_Student" EntitySet="T_Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_SelectCourse_T_Student" Association="Self.FK_T_SelectCourse_T_Student">
-            <End Role="T_Student" EntitySet="T_Student" />
-            <End Role="T_SelectCourse" EntitySet="T_SelectCourse" />
-          </AssociationSet>
-          <AssociationSet Name="FK_T_Student_T_User" Association="Self.FK_T_Student_T_User">
-            <End Role="T_User" EntitySet="T_User" />
-            <End Role="T_Student" EntitySet="T_Student" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HighSchoolVideoDBModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="T_Course">
-            <EntityTypeMapping TypeName="HighSchoolVideoDBModel.T_Course">
+            <EntityTypeMapping TypeName="Model.T_Course">
               <MappingFragment StoreEntitySet="T_Course">
                 <ScalarProperty Name="courseID" ColumnName="courseID" />
                 <ScalarProperty Name="courseName" ColumnName="courseName" />
@@ -629,7 +319,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="T_Discuss">
-            <EntityTypeMapping TypeName="HighSchoolVideoDBModel.T_Discuss">
+            <EntityTypeMapping TypeName="Model.T_Discuss">
               <MappingFragment StoreEntitySet="T_Discuss">
                 <ScalarProperty Name="QID" ColumnName="QID" />
                 <ScalarProperty Name="QueUID" ColumnName="QueUID" />
@@ -641,7 +331,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="T_Exercises">
-            <EntityTypeMapping TypeName="HighSchoolVideoDBModel.T_Exercises">
+            <EntityTypeMapping TypeName="Model.T_Exercises">
               <MappingFragment StoreEntitySet="T_Exercises">
                 <ScalarProperty Name="EID" ColumnName="EID" />
                 <ScalarProperty Name="EContent" ColumnName="EContent" />
@@ -651,8 +341,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="T_LOG">
+            <EntityTypeMapping TypeName="Model.T_LOG">
+              <MappingFragment StoreEntitySet="T_LOG">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DATES" ColumnName="DATES" />
+                <ScalarProperty Name="LEVELS" ColumnName="LEVELS" />
+                <ScalarProperty Name="LOGGER" ColumnName="LOGGER" />
+                <ScalarProperty Name="CLIENTUSER" ColumnName="CLIENTUSER" />
+                <ScalarProperty Name="CLIENTIP" ColumnName="CLIENTIP" />
+                <ScalarProperty Name="REQUESTURL" ColumnName="REQUESTURL" />
+                <ScalarProperty Name="ACTION" ColumnName="ACTION" />
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+                <ScalarProperty Name="EXCEPTION" ColumnName="EXCEPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="T_Manage">
-            <EntityTypeMapping TypeName="HighSchoolVideoDBModel.T_Manage">
+            <EntityTypeMapping TypeName="Model.T_Manage">
               <MappingFragment StoreEntitySet="T_Manage">
                 <ScalarProperty Name="MID" ColumnName="MID" />
                 <ScalarProperty Name="MType" ColumnName="MType" />
@@ -663,7 +369,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="T_Option">
-            <EntityTypeMapping TypeName="HighSchoolVideoDBModel.T_Option">
+            <EntityTypeMapping TypeName="Model.T_Option">
               <MappingFragment StoreEntitySet="T_Option">
                 <ScalarProperty Name="OID" ColumnName="OID" />
                 <ScalarProperty Name="OptionNum" ColumnName="OptionNum" />
@@ -673,7 +379,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="T_SchoolInfo">
-            <EntityTypeMapping TypeName="HighSchoolVideoDBModel.T_SchoolInfo">
+            <EntityTypeMapping TypeName="Model.T_SchoolInfo">
               <MappingFragment StoreEntitySet="T_SchoolInfo">
                 <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
                 <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
@@ -683,7 +389,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="T_SelectCourse">
-            <EntityTypeMapping TypeName="HighSchoolVideoDBModel.T_SelectCourse">
+            <EntityTypeMapping TypeName="Model.T_SelectCourse">
               <MappingFragment StoreEntitySet="T_SelectCourse">
                 <ScalarProperty Name="SCID" ColumnName="SCID" />
                 <ScalarProperty Name="SID" ColumnName="SID" />
@@ -692,7 +398,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="T_Student">
-            <EntityTypeMapping TypeName="HighSchoolVideoDBModel.T_Student">
+            <EntityTypeMapping TypeName="Model.T_Student">
               <MappingFragment StoreEntitySet="T_Student">
                 <ScalarProperty Name="SID" ColumnName="SID" />
                 <ScalarProperty Name="StuNum" ColumnName="StuNum" />
@@ -704,7 +410,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="T_Teacher">
-            <EntityTypeMapping TypeName="HighSchoolVideoDBModel.T_Teacher">
+            <EntityTypeMapping TypeName="Model.T_Teacher">
               <MappingFragment StoreEntitySet="T_Teacher">
                 <ScalarProperty Name="TID" ColumnName="TID" />
                 <ScalarProperty Name="TeacherNum" ColumnName="TeacherNum" />
@@ -718,7 +424,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="T_User">
-            <EntityTypeMapping TypeName="HighSchoolVideoDBModel.T_User">
+            <EntityTypeMapping TypeName="Model.T_User">
               <MappingFragment StoreEntitySet="T_User">
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -731,7 +437,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="T_Video">
-            <EntityTypeMapping TypeName="HighSchoolVideoDBModel.T_Video">
+            <EntityTypeMapping TypeName="Model.T_Video">
               <MappingFragment StoreEntitySet="T_Video">
                 <ScalarProperty Name="VID" ColumnName="VID" />
                 <ScalarProperty Name="VideoName" ColumnName="VideoName" />

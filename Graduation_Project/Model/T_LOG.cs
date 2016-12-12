@@ -12,13 +12,17 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class T_Course
+    public partial class T_LOG
     {
-        public int courseID { get; set; }
-        public string courseName { get; set; }
-        public int TID { get; set; }
-        public Nullable<System.DateTime> startTime { get; set; }
-        public Nullable<System.DateTime> endTime { get; set; }
-        public string courseAbout { get; set; }
+        public int ID { get; set; }
+        public Nullable<System.DateTime> DATES { get; set; }
+        public string LEVELS { get; set; }
+        public string LOGGER { get; set; }
+        public string CLIENTUSER { get; set; }
+        public string CLIENTIP { get; set; }
+        public string REQUESTURL { get; set; }
+        public string ACTION { get; set; }
+        public string MESSAGE { get; set; }
+        public string EXCEPTION { get; set; }
     }
 }

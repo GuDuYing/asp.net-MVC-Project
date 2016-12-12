@@ -17,8 +17,5 @@ namespace Model
         public int SCID { get; set; }
         public int SID { get; set; }
         public int CourseID { get; set; }
-    
-        public virtual T_Course T_Course { get; set; }
-        public virtual T_Student T_Student { get; set; }
     }
 }

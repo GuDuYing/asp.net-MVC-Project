@@ -14,18 +14,9 @@ namespace Model
     
     public partial class T_SchoolInfo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public T_SchoolInfo()
-        {
-            this.T_Student = new HashSet<T_Student>();
-        }
-    
         public int SchoolID { get; set; }
         public string SchoolName { get; set; }
         public string SchoolAbout { get; set; }
         public Nullable<System.DateTime> BuildTime { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_Student> T_Student { get; set; }
     }
 }

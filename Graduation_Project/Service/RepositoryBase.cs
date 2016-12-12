@@ -133,9 +133,9 @@ namespace Service
             {
                 int row = 0;
                 var entry = this.Context.Entry<T>(entity);
-                entry.State = System.Data.Entity.EntityState.Added;
+                entry.State = EntityState.Added;
                 row = Context.SaveChanges();
-                entry.State = System.Data.Entity.EntityState.Detached;
+                entry.State = EntityState.Detached;
                 return row > 0;
             }
             catch (Exception e)

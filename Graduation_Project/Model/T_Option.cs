@@ -18,7 +18,5 @@ namespace Model
         public string OptionNum { get; set; }
         public string OContent { get; set; }
         public Nullable<int> EID { get; set; }
-    
-        public virtual T_Exercises T_Exercises { get; set; }
     }
 }

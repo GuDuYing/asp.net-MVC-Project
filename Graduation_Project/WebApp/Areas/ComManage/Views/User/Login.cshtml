@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="Login-form">
+        @using (Ajax.BeginForm("UserLogin", null, new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            OnBegin = "dig.Loading",
+            OnSuccess = "dig.Success",
+            OnFailure = "dig.Failure",
+            OnComplete = "dig.Complete"
+        }, new { @class = "form-signin" }))
+        {
+            //@Html.AntiForgeryToken()
+            <div class="form-group">
+                <label class="form-control" for="email">用户邮箱：</label>
+                <input type="text" class="form-control" placeholder="User-Email" name="email" id="email" />
+            </div>
+            <div class="form-group">
+                <label class="form-control" for="pwd">密码：</label>
+                <input type="password" class="form-control" placeholder="PassWord" name="pwd" id="pwd"/>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="form-control btn-success" >登录</button>
+            </div>
+
+        }
+    </div>
+</body>
+</html>

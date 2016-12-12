@@ -14,20 +14,10 @@ namespace Model
     
     public partial class T_Exercises
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public T_Exercises()
-        {
-            this.T_Option = new HashSet<T_Option>();
-        }
-    
         public int EID { get; set; }
         public string EContent { get; set; }
         public string Answer { get; set; }
         public string Type { get; set; }
         public Nullable<int> VID { get; set; }
-    
-        public virtual T_Video T_Video { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_Option> T_Option { get; set; }
     }
 }

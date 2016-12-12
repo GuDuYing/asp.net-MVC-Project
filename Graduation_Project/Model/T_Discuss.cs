@@ -20,7 +20,5 @@ namespace Model
         public Nullable<System.DateTime> DisTime { get; set; }
         public Nullable<int> AnsID { get; set; }
         public Nullable<int> VID { get; set; }
-    
-        public virtual T_Video T_Video { get; set; }
     }
 }

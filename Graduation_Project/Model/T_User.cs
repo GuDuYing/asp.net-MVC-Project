@@ -14,12 +14,6 @@ namespace Model
     
     public partial class T_User
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public T_User()
-        {
-            this.T_Student = new HashSet<T_Student>();
-        }
-    
         public int UID { get; set; }
         public string UserName { get; set; }
         public string UserEmail { get; set; }
@@ -27,8 +21,5 @@ namespace Model
         public string UsrPhone { get; set; }
         public string UserStatu { get; set; }
         public string UserType { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_Student> T_Student { get; set; }
     }
 }

@@ -4,27 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="864cb3d0293544e884a907c51e77fd51" Name="Diagram1">
-        <EntityTypeShape EntityType="HighSchoolVideoDBModel.T_Course" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HighSchoolVideoDBModel.T_Discuss" Width="1.5" PointX="7.5" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HighSchoolVideoDBModel.T_Exercises" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HighSchoolVideoDBModel.T_Manage" Width="1.5" PointX="7.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HighSchoolVideoDBModel.T_Option" Width="1.5" PointX="9.75" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HighSchoolVideoDBModel.T_SchoolInfo" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HighSchoolVideoDBModel.T_SelectCourse" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HighSchoolVideoDBModel.T_Student" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HighSchoolVideoDBModel.T_Teacher" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HighSchoolVideoDBModel.T_User" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HighSchoolVideoDBModel.T_Video" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
-        <AssociationConnector Association="HighSchoolVideoDBModel.FK_T_Course_T_Teacher" ManuallyRouted="false" />
-        <AssociationConnector Association="HighSchoolVideoDBModel.FK_T_SelectCourse_T_Course" ManuallyRouted="false" />
-        <AssociationConnector Association="HighSchoolVideoDBModel.FK_T_Video_T_Course" ManuallyRouted="false" />
-        <AssociationConnector Association="HighSchoolVideoDBModel.FK_T_Discuss_T_Video" ManuallyRouted="false" />
-        <AssociationConnector Association="HighSchoolVideoDBModel.FK_T_Exercises_T_Video" ManuallyRouted="false" />
-        <AssociationConnector Association="HighSchoolVideoDBModel.FK_T_Option_T_Exercises" ManuallyRouted="false" />
-        <AssociationConnector Association="HighSchoolVideoDBModel.FK_T_Student_T_SchoolInfo" ManuallyRouted="false" />
-        <AssociationConnector Association="HighSchoolVideoDBModel.FK_T_SelectCourse_T_Student" ManuallyRouted="false" />
-        <AssociationConnector Association="HighSchoolVideoDBModel.FK_T_Student_T_User" ManuallyRouted="false" />
+      <Diagram DiagramId="4c4c653399ec472a9c5c0a883d2d5d3a" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.T_Course" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.T_Discuss" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.T_Exercises" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.T_LOG" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.T_Manage" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.T_Option" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.T_SchoolInfo" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.T_SelectCourse" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.T_Student" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.T_Teacher" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.T_User" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.T_Video" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

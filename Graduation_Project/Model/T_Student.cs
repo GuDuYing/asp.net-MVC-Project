@@ -14,22 +14,11 @@ namespace Model
     
     public partial class T_Student
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public T_Student()
-        {
-            this.T_SelectCourse = new HashSet<T_SelectCourse>();
-        }
-    
         public int SID { get; set; }
         public string StuNum { get; set; }
         public string StuName { get; set; }
         public string StuSex { get; set; }
         public Nullable<int> SchoolID { get; set; }
         public Nullable<int> UserID { get; set; }
-    
-        public virtual T_SchoolInfo T_SchoolInfo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_SelectCourse> T_SelectCourse { get; set; }
-        public virtual T_User T_User { get; set; }
     }
 }
