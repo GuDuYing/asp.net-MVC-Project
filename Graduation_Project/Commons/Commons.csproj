@@ -67,6 +67,7 @@
     <Compile Include="ToolsHelper\RegexHelper.cs" />
     <Compile Include="ToolsHelper\Tools.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="WebHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

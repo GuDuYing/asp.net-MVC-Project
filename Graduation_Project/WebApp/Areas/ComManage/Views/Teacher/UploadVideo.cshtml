@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>上传视频</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Scripts/dropzone/basic.min.css" rel="stylesheet" />
+    <link href="~/Scripts/dropzone/dropzone.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="video-upload"> 
+        @using (Ajax.BeginForm("VideoUpload", null, new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            OnBegin = "dig.Loading",
+            OnSuccess = "dig.Success",
+            OnFailure = "dig.Failure",
+            OnComplete = "dig.Complete"
+
+        }, new { @class = "form-uploadvideo", @enctype = "multipart/form-data", }))
+        {
+            <input type="file" name="file" id="file" />
+            <button type="submit" class="btn-primary">上传</button>
+        }
+
+    </div>
+    
+    
+</body>
+</html>

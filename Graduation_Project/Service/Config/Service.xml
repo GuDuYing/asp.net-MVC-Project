@@ -5,5 +5,7 @@
   <!--用户管理-->
   <object id="Service.User" type="Service.ComManage.UserService,Service" singleton="false">
   </object>
+  <!--教师管理-->
+  <object id="Service.Video" type="Service.VideoManage.VideoService,Service" singleton="false"></object>
   <!--系统管理end-->
 </objects> 

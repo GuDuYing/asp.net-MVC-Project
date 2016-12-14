@@ -61,6 +61,7 @@ namespace WebApp.Areas.ComManage.Controllers
                     json.Msg = "登录成功";
                     json.Status = "Y";
                     log.Info(Utils.GetIP(), user.UserEmail, Request.Url.ToString(), "Login", "用户登录，结果为：" + json.Msg);
+                    return RedirectToAction("index", "Home");
                 }
                 else
                 {

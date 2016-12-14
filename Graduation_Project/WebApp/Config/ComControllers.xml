@@ -6,5 +6,8 @@
   <object type="WebApp.Areas.ComManage.Controllers.UserController,WebApp" singleton="false">
     <property name="userManage" ref="Service.User"/>
   </object>
+  <object type="WebApp.Areas.ComManage.Controllers.TeacherController,WebApp" singleton="false">
+    <property name="videoManage" ref="Service.Video"/>
+  </object>
   <!--系统管理 end-->
 </objects>
