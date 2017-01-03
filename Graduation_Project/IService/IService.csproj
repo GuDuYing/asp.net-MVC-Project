@@ -68,6 +68,10 @@
       <Project>{aa781f10-fa6a-4a7b-af56-eb64712b7d34}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\vCloud\vCloud.csproj">
+      <Project>{E66AA36F-78CE-4B4F-8951-242DC7B64320}</Project>
+      <Name>vCloud</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

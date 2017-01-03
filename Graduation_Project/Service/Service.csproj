@@ -60,6 +60,7 @@
     <Compile Include="RepositoryBase.cs" />
     <Compile Include="SysManage\UserManage.cs" />
     <Compile Include="VideoManage\VideoService.cs" />
+    <Compile Include="VideoManage\VideoServiceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Commons\Commons.csproj">

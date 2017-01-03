@@ -50,9 +50,9 @@ namespace WebApp.Areas.ComManage.Controllers
                     {
                         
                         string filename = file.FileName;
-                        byte[] filedata = new byte[file.ContentLength];
-                        int maxres = file.InputStream.Read(filedata, 0, file.ContentLength);
-                        string videoid = VideoManage.UploadVideo(clientIP, filename, filedata, maxres);
+                        long maxres = file.InputStream.Length;
+                        Stream data = file.InputStream;
+                        string videoid = VideoManage.UploadVideo(clientIP, filename, data, maxres);
                         if(videoid != null && videoid != "")
                         {
                             return Json("上传成功" + videoid);

@@ -4,154 +4,153 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="T_Course">
-          <Key>
-            <PropertyRef Name="courseID" />
-          </Key>
-          <Property Name="courseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="courseName" Type="varchar" MaxLength="25" />
-          <Property Name="TID" Type="int" Nullable="false" />
-          <Property Name="startTime" Type="datetime" />
-          <Property Name="endTime" Type="datetime" />
-          <Property Name="courseAbout" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="T_Discuss">
-          <Key>
-            <PropertyRef Name="QID" />
-          </Key>
-          <Property Name="QID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="QueUID" Type="int" />
-          <Property Name="QueContent" Type="varchar" MaxLength="100" />
-          <Property Name="DisTime" Type="datetime" />
-          <Property Name="AnsID" Type="int" />
-          <Property Name="VID" Type="int" />
-        </EntityType>
-        <EntityType Name="T_Exercises">
-          <Key>
-            <PropertyRef Name="EID" />
-          </Key>
-          <Property Name="EID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EContent" Type="varchar" MaxLength="100" />
-          <Property Name="Answer" Type="varchar" MaxLength="50" />
-          <Property Name="Type" Type="varchar" MaxLength="20" />
-          <Property Name="VID" Type="int" />
-        </EntityType>
-        <EntityType Name="T_LOG">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DATES" Type="datetime" />
-          <Property Name="LEVELS" Type="nvarchar" MaxLength="20" />
-          <Property Name="LOGGER" Type="nvarchar" MaxLength="200" />
-          <Property Name="CLIENTUSER" Type="nvarchar" MaxLength="100" />
-          <Property Name="CLIENTIP" Type="nvarchar" MaxLength="20" />
-          <Property Name="REQUESTURL" Type="nvarchar" MaxLength="500" />
-          <Property Name="ACTION" Type="nvarchar" MaxLength="20" />
-          <Property Name="MESSAGE" Type="nvarchar" MaxLength="4000" />
-          <Property Name="EXCEPTION" Type="nvarchar" MaxLength="4000" />
-        </EntityType>
-        <EntityType Name="T_Manage">
-          <Key>
-            <PropertyRef Name="MID" />
-          </Key>
-          <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MType" Type="varchar" MaxLength="20" />
-          <Property Name="MContent" Type="varchar" MaxLength="50" />
-          <Property Name="MTime" Type="datetime" />
-          <Property Name="MStatus" Type="varchar" MaxLength="20" />
-        </EntityType>
-        <EntityType Name="T_Option">
-          <Key>
-            <PropertyRef Name="OID" />
-          </Key>
-          <Property Name="OID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OptionNum" Type="varchar" MaxLength="10" />
-          <Property Name="OContent" Type="varchar" MaxLength="50" />
-          <Property Name="EID" Type="int" />
-        </EntityType>
-        <EntityType Name="T_SchoolInfo">
-          <Key>
-            <PropertyRef Name="SchoolID" />
-          </Key>
-          <Property Name="SchoolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SchoolName" Type="varchar" MaxLength="30" />
-          <Property Name="SchoolAbout" Type="varchar" MaxLength="100" />
-          <Property Name="BuildTime" Type="datetime" />
-        </EntityType>
-        <EntityType Name="T_SelectCourse">
-          <Key>
-            <PropertyRef Name="SCID" />
-          </Key>
-          <Property Name="SCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SID" Type="int" Nullable="false" />
-          <Property Name="CourseID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="T_Student">
-          <Key>
-            <PropertyRef Name="SID" />
-          </Key>
-          <Property Name="SID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StuNum" Type="varchar" MaxLength="12" />
-          <Property Name="StuName" Type="varchar" MaxLength="20" />
-          <Property Name="StuSex" Type="varchar" MaxLength="4" />
-          <Property Name="SchoolID" Type="int" />
-          <Property Name="UserID" Type="int" />
-        </EntityType>
-        <EntityType Name="T_Teacher">
-          <Key>
-            <PropertyRef Name="TID" />
-          </Key>
-          <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TeacherNum" Type="int" />
-          <Property Name="TeacherName" Type="varchar" MaxLength="20" />
-          <Property Name="TeacherSex" Type="varchar" MaxLength="4" />
-          <Property Name="ProfessionalTitle" Type="varchar" MaxLength="8" />
-          <Property Name="TeacherAbout" Type="varchar" MaxLength="50" />
-          <Property Name="SchoolID" Type="int" />
-          <Property Name="UserID" Type="int" />
-        </EntityType>
-        <EntityType Name="T_User">
-          <Key>
-            <PropertyRef Name="UID" />
-          </Key>
-          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="varchar" MaxLength="30" />
-          <Property Name="UserEmail" Type="varchar" MaxLength="30" />
-          <Property Name="UserPwd" Type="varchar" MaxLength="20" />
-          <Property Name="UsrPhone" Type="varchar" MaxLength="24" />
-          <Property Name="UserStatu" Type="varchar" MaxLength="8" />
-          <Property Name="UserType" Type="varchar" MaxLength="16" />
-        </EntityType>
-        <EntityType Name="T_Video">
-          <Key>
-            <PropertyRef Name="VID" />
-          </Key>
-          <Property Name="VID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VideoName" Type="varchar" MaxLength="30" />
-          <Property Name="VideoAbout" Type="varchar" MaxLength="50" />
-          <Property Name="InitTime" Type="datetime" />
-          <Property Name="VideoID" Type="varchar" MaxLength="30" />
-          <Property Name="IsHaveExerc" Type="smallint" />
-          <Property Name="CourseID" Type="int" />
-        </EntityType>
-        <EntityContainer Name="ModelStoreContainer">
-          <EntitySet Name="T_Course" EntityType="Self.T_Course" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_Discuss" EntityType="Self.T_Discuss" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_Exercises" EntityType="Self.T_Exercises" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_LOG" EntityType="Self.T_LOG" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_Manage" EntityType="Self.T_Manage" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_Option" EntityType="Self.T_Option" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_SchoolInfo" EntityType="Self.T_SchoolInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_SelectCourse" EntityType="Self.T_SelectCourse" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_Student" EntityType="Self.T_Student" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_Teacher" EntityType="Self.T_Teacher" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_User" EntityType="Self.T_User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_Video" EntityType="Self.T_Video" Schema="dbo" store:Type="Tables" />
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="T_Course" EntityType="Model.Store.T_Course" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Discuss" EntityType="Model.Store.T_Discuss" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Exercises" EntityType="Model.Store.T_Exercises" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_LOG" EntityType="Model.Store.T_LOG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Manage" EntityType="Model.Store.T_Manage" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Option" EntityType="Model.Store.T_Option" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_SchoolInfo" EntityType="Model.Store.T_SchoolInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_SelectCourse" EntityType="Model.Store.T_SelectCourse" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Student" EntityType="Model.Store.T_Student" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Teacher" EntityType="Model.Store.T_Teacher" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_User" EntityType="Model.Store.T_User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="T_Video" EntityType="Model.Store.T_Video" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="T_Course">
+    <Key>
+      <PropertyRef Name="courseID" />
+    </Key>
+    <Property Name="courseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="courseName" Type="varchar" Nullable="true" MaxLength="25" />
+    <Property Name="TID" Type="int" Nullable="false" />
+    <Property Name="startTime" Type="datetime" Nullable="true" />
+    <Property Name="endTime" Type="datetime" Nullable="true" />
+    <Property Name="courseAbout" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_Discuss">
+    <Key>
+      <PropertyRef Name="QID" />
+    </Key>
+    <Property Name="QID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QueUID" Type="int" Nullable="true" />
+    <Property Name="QueContent" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="DisTime" Type="datetime" Nullable="true" />
+    <Property Name="AnsID" Type="int" Nullable="true" />
+    <Property Name="VID" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="T_Exercises">
+    <Key>
+      <PropertyRef Name="EID" />
+    </Key>
+    <Property Name="EID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EContent" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="Answer" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Type" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="VID" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="T_LOG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DATES" Type="datetime" Nullable="true" />
+    <Property Name="LEVELS" Type="nvarchar" Nullable="true" MaxLength="20" />
+    <Property Name="LOGGER" Type="nvarchar" Nullable="true" MaxLength="200" />
+    <Property Name="CLIENTUSER" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="CLIENTIP" Type="nvarchar" Nullable="true" MaxLength="20" />
+    <Property Name="REQUESTURL" Type="nvarchar" Nullable="true" MaxLength="500" />
+    <Property Name="ACTION" Type="nvarchar" Nullable="true" MaxLength="20" />
+    <Property Name="MESSAGE" Type="nvarchar" Nullable="true" MaxLength="4000" />
+    <Property Name="EXCEPTION" Type="nvarchar" Nullable="true" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="T_Manage">
+    <Key>
+      <PropertyRef Name="MID" />
+    </Key>
+    <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MType" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="MContent" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="MTime" Type="datetime" Nullable="true" />
+    <Property Name="MStatus" Type="varchar" Nullable="true" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="T_Option">
+    <Key>
+      <PropertyRef Name="OID" />
+    </Key>
+    <Property Name="OID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OptionNum" Type="varchar" Nullable="true" MaxLength="10" />
+    <Property Name="OContent" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="EID" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="T_SchoolInfo">
+    <Key>
+      <PropertyRef Name="SchoolID" />
+    </Key>
+    <Property Name="SchoolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolName" Type="varchar" Nullable="true" MaxLength="30" />
+    <Property Name="SchoolAbout" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="BuildTime" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="T_SelectCourse">
+    <Key>
+      <PropertyRef Name="SCID" />
+    </Key>
+    <Property Name="SCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SID" Type="int" Nullable="false" />
+    <Property Name="CourseID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Student">
+    <Key>
+      <PropertyRef Name="SID" />
+    </Key>
+    <Property Name="SID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StuNum" Type="varchar" Nullable="true" MaxLength="12" />
+    <Property Name="StuName" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="StuSex" Type="varchar" Nullable="true" MaxLength="4" />
+    <Property Name="SchoolID" Type="int" Nullable="true" />
+    <Property Name="UserID" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="T_Teacher">
+    <Key>
+      <PropertyRef Name="TID" />
+    </Key>
+    <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeacherNum" Type="int" Nullable="true" />
+    <Property Name="TeacherName" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="TeacherSex" Type="varchar" Nullable="true" MaxLength="4" />
+    <Property Name="ProfessionalTitle" Type="varchar" Nullable="true" MaxLength="8" />
+    <Property Name="TeacherAbout" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="SchoolID" Type="int" Nullable="true" />
+    <Property Name="UserID" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="T_User">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" Nullable="true" MaxLength="30" />
+    <Property Name="UserEmail" Type="varchar" Nullable="true" MaxLength="30" />
+    <Property Name="UserPwd" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="UsrPhone" Type="varchar" Nullable="true" MaxLength="24" />
+    <Property Name="UserStatu" Type="varchar" Nullable="true" MaxLength="8" />
+    <Property Name="UserType" Type="varchar" Nullable="true" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="T_Video">
+    <Key>
+      <PropertyRef Name="VID" />
+    </Key>
+    <Property Name="VID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VideoName" Type="varchar" Nullable="true" MaxLength="30" />
+    <Property Name="VideoAbout" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="InitTime" Type="datetime" Nullable="true" />
+    <Property Name="VideoID" Type="varchar" Nullable="true" MaxLength="30" />
+    <Property Name="IsHaveExerc" Type="smallint" Nullable="true" />
+    <Property Name="CourseID" Type="int" Nullable="true" />
+  </EntityType>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -304,154 +303,153 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="T_Course">
-            <EntityTypeMapping TypeName="Model.T_Course">
-              <MappingFragment StoreEntitySet="T_Course">
-                <ScalarProperty Name="courseID" ColumnName="courseID" />
-                <ScalarProperty Name="courseName" ColumnName="courseName" />
-                <ScalarProperty Name="TID" ColumnName="TID" />
-                <ScalarProperty Name="startTime" ColumnName="startTime" />
-                <ScalarProperty Name="endTime" ColumnName="endTime" />
-                <ScalarProperty Name="courseAbout" ColumnName="courseAbout" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_Discuss">
-            <EntityTypeMapping TypeName="Model.T_Discuss">
-              <MappingFragment StoreEntitySet="T_Discuss">
-                <ScalarProperty Name="QID" ColumnName="QID" />
-                <ScalarProperty Name="QueUID" ColumnName="QueUID" />
-                <ScalarProperty Name="QueContent" ColumnName="QueContent" />
-                <ScalarProperty Name="DisTime" ColumnName="DisTime" />
-                <ScalarProperty Name="AnsID" ColumnName="AnsID" />
-                <ScalarProperty Name="VID" ColumnName="VID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_Exercises">
-            <EntityTypeMapping TypeName="Model.T_Exercises">
-              <MappingFragment StoreEntitySet="T_Exercises">
-                <ScalarProperty Name="EID" ColumnName="EID" />
-                <ScalarProperty Name="EContent" ColumnName="EContent" />
-                <ScalarProperty Name="Answer" ColumnName="Answer" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="VID" ColumnName="VID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_LOG">
-            <EntityTypeMapping TypeName="Model.T_LOG">
-              <MappingFragment StoreEntitySet="T_LOG">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="DATES" ColumnName="DATES" />
-                <ScalarProperty Name="LEVELS" ColumnName="LEVELS" />
-                <ScalarProperty Name="LOGGER" ColumnName="LOGGER" />
-                <ScalarProperty Name="CLIENTUSER" ColumnName="CLIENTUSER" />
-                <ScalarProperty Name="CLIENTIP" ColumnName="CLIENTIP" />
-                <ScalarProperty Name="REQUESTURL" ColumnName="REQUESTURL" />
-                <ScalarProperty Name="ACTION" ColumnName="ACTION" />
-                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
-                <ScalarProperty Name="EXCEPTION" ColumnName="EXCEPTION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_Manage">
-            <EntityTypeMapping TypeName="Model.T_Manage">
-              <MappingFragment StoreEntitySet="T_Manage">
-                <ScalarProperty Name="MID" ColumnName="MID" />
-                <ScalarProperty Name="MType" ColumnName="MType" />
-                <ScalarProperty Name="MContent" ColumnName="MContent" />
-                <ScalarProperty Name="MTime" ColumnName="MTime" />
-                <ScalarProperty Name="MStatus" ColumnName="MStatus" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_Option">
-            <EntityTypeMapping TypeName="Model.T_Option">
-              <MappingFragment StoreEntitySet="T_Option">
-                <ScalarProperty Name="OID" ColumnName="OID" />
-                <ScalarProperty Name="OptionNum" ColumnName="OptionNum" />
-                <ScalarProperty Name="OContent" ColumnName="OContent" />
-                <ScalarProperty Name="EID" ColumnName="EID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_SchoolInfo">
-            <EntityTypeMapping TypeName="Model.T_SchoolInfo">
-              <MappingFragment StoreEntitySet="T_SchoolInfo">
-                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
-                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
-                <ScalarProperty Name="SchoolAbout" ColumnName="SchoolAbout" />
-                <ScalarProperty Name="BuildTime" ColumnName="BuildTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_SelectCourse">
-            <EntityTypeMapping TypeName="Model.T_SelectCourse">
-              <MappingFragment StoreEntitySet="T_SelectCourse">
-                <ScalarProperty Name="SCID" ColumnName="SCID" />
-                <ScalarProperty Name="SID" ColumnName="SID" />
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_Student">
-            <EntityTypeMapping TypeName="Model.T_Student">
-              <MappingFragment StoreEntitySet="T_Student">
-                <ScalarProperty Name="SID" ColumnName="SID" />
-                <ScalarProperty Name="StuNum" ColumnName="StuNum" />
-                <ScalarProperty Name="StuName" ColumnName="StuName" />
-                <ScalarProperty Name="StuSex" ColumnName="StuSex" />
-                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_Teacher">
-            <EntityTypeMapping TypeName="Model.T_Teacher">
-              <MappingFragment StoreEntitySet="T_Teacher">
-                <ScalarProperty Name="TID" ColumnName="TID" />
-                <ScalarProperty Name="TeacherNum" ColumnName="TeacherNum" />
-                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
-                <ScalarProperty Name="TeacherSex" ColumnName="TeacherSex" />
-                <ScalarProperty Name="ProfessionalTitle" ColumnName="ProfessionalTitle" />
-                <ScalarProperty Name="TeacherAbout" ColumnName="TeacherAbout" />
-                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_User">
-            <EntityTypeMapping TypeName="Model.T_User">
-              <MappingFragment StoreEntitySet="T_User">
-                <ScalarProperty Name="UID" ColumnName="UID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
-                <ScalarProperty Name="UserPwd" ColumnName="UserPwd" />
-                <ScalarProperty Name="UsrPhone" ColumnName="UsrPhone" />
-                <ScalarProperty Name="UserStatu" ColumnName="UserStatu" />
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_Video">
-            <EntityTypeMapping TypeName="Model.T_Video">
-              <MappingFragment StoreEntitySet="T_Video">
-                <ScalarProperty Name="VID" ColumnName="VID" />
-                <ScalarProperty Name="VideoName" ColumnName="VideoName" />
-                <ScalarProperty Name="VideoAbout" ColumnName="VideoAbout" />
-                <ScalarProperty Name="InitTime" ColumnName="InitTime" />
-                <ScalarProperty Name="VideoID" ColumnName="VideoID" />
-                <ScalarProperty Name="IsHaveExerc" ColumnName="IsHaveExerc" />
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="T_Course">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_Course)">
+        <MappingFragment StoreEntitySet="T_Course">
+          <ScalarProperty Name="courseID" ColumnName="courseID" />
+          <ScalarProperty Name="courseName" ColumnName="courseName" />
+          <ScalarProperty Name="TID" ColumnName="TID" />
+          <ScalarProperty Name="startTime" ColumnName="startTime" />
+          <ScalarProperty Name="endTime" ColumnName="endTime" />
+          <ScalarProperty Name="courseAbout" ColumnName="courseAbout" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Discuss">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_Discuss)">
+        <MappingFragment StoreEntitySet="T_Discuss">
+          <ScalarProperty Name="QID" ColumnName="QID" />
+          <ScalarProperty Name="QueUID" ColumnName="QueUID" />
+          <ScalarProperty Name="QueContent" ColumnName="QueContent" />
+          <ScalarProperty Name="DisTime" ColumnName="DisTime" />
+          <ScalarProperty Name="AnsID" ColumnName="AnsID" />
+          <ScalarProperty Name="VID" ColumnName="VID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Exercises">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_Exercises)">
+        <MappingFragment StoreEntitySet="T_Exercises">
+          <ScalarProperty Name="EID" ColumnName="EID" />
+          <ScalarProperty Name="EContent" ColumnName="EContent" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="VID" ColumnName="VID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_LOG">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_LOG)">
+        <MappingFragment StoreEntitySet="T_LOG">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DATES" ColumnName="DATES" />
+          <ScalarProperty Name="LEVELS" ColumnName="LEVELS" />
+          <ScalarProperty Name="LOGGER" ColumnName="LOGGER" />
+          <ScalarProperty Name="CLIENTUSER" ColumnName="CLIENTUSER" />
+          <ScalarProperty Name="CLIENTIP" ColumnName="CLIENTIP" />
+          <ScalarProperty Name="REQUESTURL" ColumnName="REQUESTURL" />
+          <ScalarProperty Name="ACTION" ColumnName="ACTION" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="EXCEPTION" ColumnName="EXCEPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Manage">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_Manage)">
+        <MappingFragment StoreEntitySet="T_Manage">
+          <ScalarProperty Name="MID" ColumnName="MID" />
+          <ScalarProperty Name="MType" ColumnName="MType" />
+          <ScalarProperty Name="MContent" ColumnName="MContent" />
+          <ScalarProperty Name="MTime" ColumnName="MTime" />
+          <ScalarProperty Name="MStatus" ColumnName="MStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Option">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_Option)">
+        <MappingFragment StoreEntitySet="T_Option">
+          <ScalarProperty Name="OID" ColumnName="OID" />
+          <ScalarProperty Name="OptionNum" ColumnName="OptionNum" />
+          <ScalarProperty Name="OContent" ColumnName="OContent" />
+          <ScalarProperty Name="EID" ColumnName="EID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_SchoolInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_SchoolInfo)">
+        <MappingFragment StoreEntitySet="T_SchoolInfo">
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="SchoolAbout" ColumnName="SchoolAbout" />
+          <ScalarProperty Name="BuildTime" ColumnName="BuildTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_SelectCourse">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_SelectCourse)">
+        <MappingFragment StoreEntitySet="T_SelectCourse">
+          <ScalarProperty Name="SCID" ColumnName="SCID" />
+          <ScalarProperty Name="SID" ColumnName="SID" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Student">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_Student)">
+        <MappingFragment StoreEntitySet="T_Student">
+          <ScalarProperty Name="SID" ColumnName="SID" />
+          <ScalarProperty Name="StuNum" ColumnName="StuNum" />
+          <ScalarProperty Name="StuName" ColumnName="StuName" />
+          <ScalarProperty Name="StuSex" ColumnName="StuSex" />
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Teacher">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_Teacher)">
+        <MappingFragment StoreEntitySet="T_Teacher">
+          <ScalarProperty Name="TID" ColumnName="TID" />
+          <ScalarProperty Name="TeacherNum" ColumnName="TeacherNum" />
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+          <ScalarProperty Name="TeacherSex" ColumnName="TeacherSex" />
+          <ScalarProperty Name="ProfessionalTitle" ColumnName="ProfessionalTitle" />
+          <ScalarProperty Name="TeacherAbout" ColumnName="TeacherAbout" />
+          <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_User">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_User)">
+        <MappingFragment StoreEntitySet="T_User">
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="UserPwd" ColumnName="UserPwd" />
+          <ScalarProperty Name="UsrPhone" ColumnName="UsrPhone" />
+          <ScalarProperty Name="UserStatu" ColumnName="UserStatu" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Video">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.T_Video)">
+        <MappingFragment StoreEntitySet="T_Video">
+          <ScalarProperty Name="VID" ColumnName="VID" />
+          <ScalarProperty Name="VideoName" ColumnName="VideoName" />
+          <ScalarProperty Name="VideoAbout" ColumnName="VideoAbout" />
+          <ScalarProperty Name="InitTime" ColumnName="InitTime" />
+          <ScalarProperty Name="VideoID" ColumnName="VideoID" />
+          <ScalarProperty Name="IsHaveExerc" ColumnName="IsHaveExerc" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -465,7 +463,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
       </DesignerInfoPropertySet>
     </Options>

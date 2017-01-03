@@ -126,6 +126,7 @@
       <DependentUpon>HighSchoolVideoDB.edmx</DependentUpon>
       <LastGenOutput>HighSchoolVideoDB.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="HighSchoolVideoDB.sql" />
     <Content Include="HighSchoolVideoDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HighSchoolVideoDB.edmx</DependentUpon>
